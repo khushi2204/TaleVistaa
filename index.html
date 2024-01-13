@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaleVista:A Storytelling Generator</title>
+    <style>
+        
+        .query-box {
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            padding: 8px;
+            width: 94%;
+            max-width: 100%;
+            margin-bottom: 10px;
+            white-space: pre-wrap;
+            overflow-wrap: break-word;}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            background:url("198378861_l.jpg");
+            background-size:cover;
+            background-position:center;
+        }
+
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 12px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a.right {
+            float: right;
+        }
+
+        .navbar a.active{
+            background-color:#04AA6D;
+            color:white;
+        }
+
+        .navbar a:hover{
+            background-color:#ddd;
+            color:black;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background:transparent;
+            backdrop-filter:blur(15px);
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #2fc54a;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .genre-description {
+            margin-top: 10px;
+            font-style: normal;
+            color: #fff;
+        }
+
+        /* Style for dropdown menus */
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .nested-dropdown {
+            margin-top: 10px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <p><a class="active" href ="index.html">Home</a></p>
+        <p><a href ="about.html">About</a></p>
+        <p><a href ="contact.html">Contact Us</a></p>
+        <p><a href ="feedback.html">Feedback</a></p>
+        <p><a href="signup.html" class="right">Sign Up</a></p>
+        <p><a href="login.html" class="right">Login</a></p>
+    </div>
+
+    <div class="container">
+        <h2 style="color:#fff;">TaleVista:A Storytelling Generator</h2>
+        <form>
+            <label for="genre", style="color:#fff;">Select Genre:</label>
+            <select id="genre" name="genre">
+                <option value="select">Select Genre</option>
+                <option value="literary">Literary Genres</option>
+                <option value="film">Film Genres</option>
+            </select>
+
+            <div class="nested-dropdown" id="literary-dropdown" style="display: none;">
+                <label for="literary-genre">Select Literary Genre:</label>
+                <select id="literary-genre" name="literary-genre">
+                    <option value="select">Select Literary Genre</option>
+                    <option value="mystery">Mystery</option>
+                    <option value="science-fiction">Science Fiction</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="romance">Romance</option>
+                    <option value="historical-fiction">Historical Fiction</option>
+                    <option value="adventure">Adventure</option>
+                </select>
+            </div>
+
+            <div class="nested-dropdown" id="film-dropdown" style="display: none;">
+                <label for="film-genre">Select Film Genre:</label>
+                <select id="film-genre" name="film-genre">
+                    <option value="select">Select Film Genre</option>
+                    <option value="action">Action</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="drama">Drama</option>
+                    <option value="horror">Horror</option>
+                    <option value="science-fiction">Science Fiction</option>
+                    <option value="documentary">Documentary</option>
+                </select>
+            </div>
+            
+            <label for="narrative" style="color:#fff;">Select Narrative:</label>
+            <select id="narrative" name="narrative">
+                    <option value="select">Select Narrative Type</option>
+                    <option value="linear">Linear Narrative</option>
+                    <option value="nonlinear">Nonlinear Narrative</option>
+                    <option value="episodic">Episodic Narrative</option>
+                    <option value="interactive">Interactive Narrative</option>
+                    <option value="first-person">First-Person Narrative</option>
+                    <option value="third-person-limited">Third-Person Limited Narrative</option>
+                    <option value="third-person-omniscient">Third-Person Omniscient Narrative</option>
+                    <option value="stream-of-consciousness">Stream of Consciousness</option>
+                    <option value="epistolary">Epistolary Narrative</option>
+                    <option value="metafiction">Metafiction</option>
+                    <option value="quest">Quest Narrative</option>
+            </select>
+
+        <label for="script-length" style="color:#fff;">Length of the Script:</label>
+        <input type="text" id="script-length" name="script-length" placeholder="Enter script length (in no. of words)." required>
+
+        <label for="complexity" style="color:#fff;">Complexity:</label>
+        <select id="complexity" name="complexity">
+            <option value="select">Select Complexity Level</option>
+            <option value="easy">Level 1 - Easy</option>
+            <option value="medium">Level 2 - Medium</option>
+            <option value="hard">Level 3 - Hard</option>
+        </select>
+
+            <label for="query" style="color:#fff;">Brief Description of your topic:</label>
+            <div class="query-box" contenteditable="true" id="navbar a" oninput="limitWords()">Type your description here...</div>
+            <p id="word-count" style="color:#fff">Word Limit:100</p>
+
+
+            <input type="submit" value="Submit" onclick="goToLink()">
+
+            <div class="genre-description">
+                <p id="genre-description" style="display: none;"></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function goToLink() {
+            // Change the URL to the desired link
+            window.location.href = "finalpage.html";
+        }
+        // JavaScript to display dropdowns based on category selection
+        document.getElementById('genre').addEventListener('change', function() {
+            var selectedCategory = this.value;
+            document.getElementById('genre-dropdown').style.display = (selectedCategory === 'genre') ? 'block' : 'none';
+            document.getElementById('narrative-dropdown').style.display = (selectedCategory === 'narrative') ? 'block' : 'none';
+        });
+
+        // JavaScript to display genre descriptions on hover
+        document.getElementById('genre').addEventListener('change', function() {
+            var selectedGenre = this.value;
+            document.getElementById('literary-dropdown').style.display = (selectedGenre === 'literary') ? 'block' : 'none';
+            document.getElementById('film-dropdown').style.display = (selectedGenre === 'film') ? 'block' : 'none';
+        });
+
+        
+
+        // JavaScript to display genre and literary genre descriptions on submit
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var selectedGenre = document.getElementById('genre').value;
+            var selectedLiteraryGenre = document.getElementById('literary-genre').value;
+            var selectedFilmGenre = document.getElementById('film-genre').value;
+
+            if (selectedGenre === 'literary' && selectedLiteraryGenre !== 'select') {
+                var description = getLiteraryGenreDescription(selectedLiteraryGenre);
+                document.getElementById('genre-description').textContent = description;
+                document.getElementById('genre-description').style.display = 'block';
+            } else if (selectedGenre === 'film' && selectedFilmGenre !== 'select') {
+                var description = getFilmGenreDescription(selectedFilmGenre);
+                document.getElementById('genre-description').textContent = description;
+                document.getElementById('genre-description').style.display = 'block';
+            } else {
+                document.getElementById('genre-description').style.display = 'none';
+            }
+        });
+
+        function getLiteraryGenreDescription(genre) {
+            switch (genre) {
+                case 'mystery':
+                    return 'Mystery: Involves solving a crime or unraveling a puzzle.';
+                case 'science-fiction':
+                    return 'Science Fiction: Explores futuristic concepts, often involving advanced technology.';
+                case 'fantasy':
+                    return 'Fantasy: Involves magical elements or supernatural creatures.';
+                case 'romance':
+                    return 'Romance: Focuses on love and emotional relationships.';
+                case 'historical-fiction':
+                    return 'Historical Fiction: Set in a specific historical period.';
+                case 'adventure':
+                    return 'Adventure: Involves exciting and often dangerous journeys.';
+                default:
+                    return '';
+            }}
+
+        function getFilmGenreDescription(genre) {
+            switch (genre) {
+                case 'action':
+                    return 'Action: Involves intense physical activity and often includes violence.';
+                case 'comedy':
+                    return 'Comedy: Intended to make the audience laugh.';
+                case 'drama':
+                    return 'Drama: Focuses on realistic characters and emotional storytelling.';
+                case 'horror':
+                    return 'Horror: Intended to evoke fear and suspense.';
+                case 'science-fiction':
+                    return 'Science Fiction: Similar to the literary genre, exploring futuristic concepts.';
+                case 'documentary':
+                    return 'Documentary: Presents factual information about real events, people, or issues.';
+                default:
+                    return '';
+            }}
+
+    
+
+        function getNarrativeDescription(narrativeType) {
+            switch (narrativeType) {
+                case 'linear':
+                    return 'Linear Narrative: Follows a chronological sequence of events from beginning to end without interruption. Most traditional storytelling, like classic novels and movies, follows a linear narrative structure.';
+                case 'nonlinear':
+                    return 'Nonlinear Narrative: Presents events out of chronological order. Flashbacks, flash-forwards, and parallel storylines are common in nonlinear narratives. Movies like "Pulp Fiction" and novels like "One Hundred Years of Solitude" use this structure.';
+                case 'episodic':
+                    return 'Episodic Narrative: Comprises loosely connected, self-contained episodes or chapters, often featuring the same characters. TV series with a "case-of-the-week" format or novels with distinct chapters showcasing different events are examples.';
+                case 'interactive':
+                    return 'Interactive Narrative: Involves audience participation or user interaction. Video games, choose-your-own-adventure books, and interactive movies allow the audience to make decisions that impact the story.';
+                case 'first-person':
+                    return 'First-Person Narrative: Narrated by a character within the story, using pronouns like "I" and "we." This perspective provides an intimate look into the narrator\'s thoughts and feelings. Examples include "The Catcher in the Rye" and "To Kill a Mockingbird."';
+                case 'third-person-limited':
+                    return 'Third-Person Limited Narrative: Narrated from an external perspective but focuses on the thoughts and feelings of one character. It uses pronouns like "he," "she," or "they" but doesn\'t reveal the inner thoughts of all characters. Many novels, including the "Harry Potter" series, use this perspective.';
+                case 'third-person-omniscient':
+                    return 'Third-Person Omniscient Narrative: Narrated from an all-knowing perspective, providing insights into the thoughts and emotions of multiple characters. This allows the audience to have a broader understanding of the story and its characters.';
+                case 'stream-of-consciousness':
+                    return 'Stream of Consciousness: Represents a character\'s continuous flow of thoughts and feelings, often without clear structure or punctuation. It seeks to mimic the natural thought process. Works like James Joyce\'s "Ulysses" are famous for using this narrative style.';
+                case 'epistolary':
+                    return 'Epistolary Narrative: Told through a series of letters, diary entries, or other written documents. Bram Stoker\'s "Dracula" and Alice Walker\'s "The Color Purple" are examples of epistolary novels.';
+                case 'metafiction':
+                    return 'Metafiction: Draws attention to its own fictional nature, often breaking the fourth wall or commenting on the act of storytelling itself. It encourages readers to think about the construction of the narrative. Examples include "If on a winter\'s night a traveler" by Italo Calvino.';
+                case 'quest':
+                    return 'Quest Narrative: Involves a protagonist undertaking a journey or quest, facing challenges and adventures along the way. Classic examples include "The Odyssey" and J.R.R. Tolkiens "The Lord of the Rings.';
+                    default:
+                    return '';
+            }
+        }
+    </script>
+</body>
+</html>

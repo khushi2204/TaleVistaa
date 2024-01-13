@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genre-based Music Player</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <label for="genre">Select Genre:</label>
+    <select id="genre" name="genre" onchange="playSelectedSong()">
+        <option value="Mystery">Mystery</option>
+        <option value="Science Fiction">Science Fiction</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Romance">Romance</option>
+        <option value="Historical Fiction">Historical Fiction</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Action">Action</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Drama">Drama</option>
+        <option value="Horror">Horror</option>
+        <option value="Science Fiction">Science Fiction</option>
+        <option value="Documentary">Documentary</option>
+    </select>
+
+    <audio id="music-player" controls>
+        <!-- Default empty source -->
+        <source id="audio-source" src="song.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        function playSelectedSong() {
+            var genreSelector = document.getElementById('genre');
+            var musicPlayer = document.getElementById('music-player');
+            var audioSource = document.getElementById('audio-source');
+
+            // Get the selected genre
+            var selectedGenre = genreSelector.value;
+
+            // Define the paths to your songs based on genre
+            var songPaths = {
+                'rock': 'song.mp3',
+                'pop': 'path_to_pop_song.mp3',
+                'hip-hop': 'path_to_hip_hop_song.mp3',
+                // Add more genres and their corresponding song paths
+            };
+
+            // Set the source of the audio element based on the selected genre
+            audioSource.src = songPaths[selectedGenre];
+
+            // Load and play the selected song
+            musicPlayer.load();
+            musicPlayer.play();
+        }
+    </script>
+</body>
+</html>
